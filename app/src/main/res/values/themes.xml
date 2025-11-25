@@ -1,0 +1,5 @@
+<resources>
+    <style name="Theme.AMCScore" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- puoi personalizzare colori se vuoi -->
+    </style>
+</resources>
