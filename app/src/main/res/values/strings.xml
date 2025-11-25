@@ -1,7 +1,0 @@
-<resources>
-    <string name="app_name">AMCScore</string>
-    <string name="info_text">1. Attiva l&apos;hotspot nelle impostazioni di Android\n2. Collega i dispositivi al Wi-Fi\n3. Apri il browser e vai a http://IP_DEL_TELEFONO:8080</string>
-    <string name="btn_volley">Usa tabellone VOLLEY</string>
-    <string name="btn_basket">Usa tabellone BASKET</string>
-    <string name="status_initial">Server non avviato</string>
-</resources>
