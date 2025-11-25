@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <title>AMCScore - Basket Display</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: #000;
+      color: #fff;
+    }
+    .wrapper {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+    }
+    .teams {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .team-name {
+      font-size: 3vw;
+      font-weight: bold;
+    }
+    .scores {
+      flex: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .score {
+      font-size: 18vw;
+      font-weight: bold;
+      text-align: center;
+      flex: 1;
+    }
+    .period {
+      text-align: center;
+      font-size: 4vw;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="teams">
+      <div id="teamA" class="team-name"></div>
+      <div id="teamB" class="team-name"></div>
+    </div>
+    <div class="scores">
+      <div id="scoreA" class="score"></div>
+      <div id="scoreB" class="score"></div>
+    </div>
+    <div class="period" id="periodText"></div>
+  </div>
+
+  <script>
+    const TAB_NAME = "Basket";
+
+    const teamA = document.getElementById("teamA");
+    const teamB = document.getElementById("teamB");
+    const scoreA = document.getElementById("scoreA");
+    const scoreB = document.getElementById("scoreB");
+    const periodText = document.getElementById("periodText");
+
+    function render(s) {
+      teamA.textContent = s.teamA_name;
+      teamB.textContent = s.teamB_name;
+      scoreA.textContent = s.teamA_score;
+      scoreB.textContent = s.teamB_score;
+      const period = s.current_set; // riuso current_set come "periodo"
+      periodText.textContent = "Periodo: " + period;
+    }
+
+    async function refresh() {
+      try {
+        const res = await fetch("/api/state/" + TAB_NAME);
+        const s = await res.json();
+        render(s);
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    refresh();
+    setInterval(refresh, 500);
+  </script>
+</body>
+</html>
